@@ -27,7 +27,7 @@ public class Hero {
                 case 'E': newX++; break;
                 case 'O': newX--; break;
                 default:
-                    break;
+                    throw new IllegalArgumentException("Direction invalide : " + dir);
             }
 
             if (map.isValidPosition(newX, newY)) {
