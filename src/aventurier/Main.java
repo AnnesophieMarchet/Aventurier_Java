@@ -1,10 +1,8 @@
 package aventurier;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.logging.Logger;
+
 public class Main {
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
@@ -16,15 +14,11 @@ public class Main {
         for (String movementFile : movementFiles) {
             LOGGER.info("Les coordonnées sont: " + movementFile);
 
-            List<String> lines = Files.readAllLines(Paths.get(movementFile));
-            String[] coords = lines.get(0).split(",");
-            int startX = Integer.parseInt(coords[0].trim());
-            int startY = Integer.parseInt(coords[1].trim());
+            Hero hero = HeroFactory.createFromFile(map, movementFile);
+            String directions = HeroFactory.getDirectionsFromFile(movementFile);
 
-            LOGGER.info("Position de départ du héro (" + startX + "," + startY + ")");
+            LOGGER.info("Position de départ du héro (" + hero.getX() + "," + hero.getY() + ")");
 
-            Hero hero = new Hero(map, startX, startY);
-            String directions = lines.get(1).trim();
             LOGGER.info("Déplacements : " + directions);
             hero.move(directions);
             LOGGER.info("Position finale : (" + hero.getX() + "," + hero.getY() + ")");
