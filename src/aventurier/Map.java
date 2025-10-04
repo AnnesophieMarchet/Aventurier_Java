@@ -24,10 +24,18 @@ public class Map {
         return x >= 0 && x < map[0].length && y >= 0 && y < map.length && map[y][x] != '#';
     }
 
-    public void displayMap() {
-        for (char[] row : map) {
-            System.out.println(new String(row));
+    public void displayMap(Hero hero) {
+        System.out.println("=======CARTE=======\n");
+        for (int y = 0; y < map.length; y++) {
+            for (int x = 0; x < map[y].length; x++) {
+                if (hero != null && hero.getX() == x && hero.getY() == y) {
+                    System.out.print('H');
+                } else {
+                    System.out.print(map[y][x]);
+                }
+            }
+            System.out.println();
         }
+        System.out.println("===================\n");
     }
-
 }

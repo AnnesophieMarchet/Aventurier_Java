@@ -10,8 +10,7 @@ public class Main {
 
     public static void main(String[] args)throws IOException {
         Map map = new Map("assets/map.txt");
-        LOGGER.info("Affichage de la carte :");
-        map.displayMap();
+
         String [] movementFiles = {"assets/movements1.txt","assets/movements2.txt"};
 
         for (String movementFile : movementFiles) {
@@ -23,6 +22,13 @@ public class Main {
             int startY = Integer.parseInt(coords[1].trim());
 
             LOGGER.info("Position de départ du héro (" + startX + "," + startY + ")");
+
+            Hero hero = new Hero(map, startX, startY);
+            String directions = lines.get(1).trim();
+            LOGGER.info("Déplacements : " + directions);
+            hero.move(directions);
+            LOGGER.info("Position finale : (" + hero.getX() + "," + hero.getY() + ")");
+            map.displayMap(hero);
         }
 
     }
