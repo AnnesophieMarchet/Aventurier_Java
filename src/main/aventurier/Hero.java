@@ -1,9 +1,11 @@
 package main.aventurier;
 
+
 public class Hero {
+
     private int x;
     private int y;
-    private Map map;
+    private final Map map;
 
     public Hero(Map map, int startX, int startY) {
         this.map = map;

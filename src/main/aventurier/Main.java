@@ -1,6 +1,7 @@
 package main.aventurier;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
@@ -14,14 +15,15 @@ public class Main {
             try {
                 Hero hero = HeroFactory.createFromFile(map, movementFile);
                 String directions = HeroFactory.getDirectionsFromFile(movementFile);
-
-                LOGGER.info("Position de départ du héros (" + hero.getX() + "," + hero.getY() + ") Déplacements : " + directions);
+                LOGGER.log(Level.INFO, "Position de départ du héros : ({0},{1})", new Object[]{hero.getX(), hero.getY()});
+                LOGGER.log(Level.INFO, "Déplacements du héros : {0}", new Object[]{directions});
                 hero.move(directions);
-                LOGGER.info("Position finale : (" + hero.getX() + "," + hero.getY() + ")");
+                LOGGER.log(Level.INFO, "Position finale du héros : ({0},{1})", new Object[]{hero.getX(), hero.getY()});
                 map.displayMap(hero);
 
             } catch (IllegalArgumentException e) {
                 LOGGER.warning("Impossible de créer le héros pour " + movementFile + " : " + e.getMessage());
+
             } catch (IOException e) {
                 LOGGER.severe("Erreur lecture fichier " + movementFile + " : " + e.getMessage());
             }
