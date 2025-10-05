@@ -1,4 +1,4 @@
-package aventurier;
+package main.aventurier;
 
 public class Hero {
     private int x;

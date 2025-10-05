@@ -1,4 +1,4 @@
-package aventurier;
+package main.aventurier;
 
 import java.io.IOException;
 import java.nio.file.Files;
